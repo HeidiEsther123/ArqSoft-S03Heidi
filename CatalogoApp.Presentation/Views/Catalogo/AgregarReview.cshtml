@@ -1,0 +1,40 @@
+﻿@model CatalogoApp.Domain.Models.Review
+
+<div class="card-gamer shadow-sm p-4 mx-auto mt-4" style="max-width:600px;">
+    <h3 class="mb-4 text-center text-purple-light">✍️ Escribir Reseña</h3>
+
+    <form method="post">
+        <input type="hidden" asp-for="ItemId" />
+
+        <div class="mb-3">
+            <label class="form-label-gamer">Tu usuario</label>
+            <input asp-for="Usuario" class="form-control-gamer" placeholder="Ej: PlayerOne" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label-gamer">Calificación</label>
+            <select asp-for="Calificacion" class="form-control-gamer">
+                <option value="1">⭐ (1)</option>
+                <option value="2">⭐⭐ (2)</option>
+                <option value="3">⭐⭐⭐ (3)</option>
+                <option value="4">⭐⭐⭐⭐ (4)</option>
+                <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label-gamer">Comentario</label>
+            <textarea asp-for="Comentario" class="form-control-gamer"
+                      rows="4" placeholder="¿Qué te pareció el juego?"></textarea>
+        </div>
+
+        <div class="text-center mt-4 d-flex justify-content-center gap-3">
+            <button type="submit" class="btn-gamer">
+                Enviar Reseña ✓
+            </button>
+            <a asp-action="Detalle" asp-route-id="@Model.ItemId" class="btn-gamer">
+                ← Cancelar
+            </a>
+        </div>
+    </form>
+</div>

@@ -4,5 +4,11 @@
     "NombreUsuario": "MasterChief",
     "Correo": "spartan@unsc.com",
     "Contrasena": "cortana123"
+  },
+  {
+    "Id": 2,
+    "NombreUsuario": "Heidi",
+    "Correo": "heidipena@tecdesoftware.edu.mx",
+    "Contrasena": "Datos"
   }
 ]

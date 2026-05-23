@@ -1,4 +1,5 @@
 ﻿@model CatalogoApp.Domain.Models.Item
+@using CatalogoApp.Domain.Models
 
 <div class="card-gamer shadow-sm p-4 mx-auto mt-4" style="max-width:600px;">
     <h2 class="mb-4 text-center">@Model.Titulo</h2>
@@ -6,10 +7,46 @@
     <p><strong>Género:</strong> <span class="text-purple-light">@Model.Genero</span></p>
     <p><strong>Consola:</strong> <span class="text-purple-light">@Model.Consola</span></p>
     <p><strong>Año:</strong> <span class="text-purple-light">@Model.Ano</span></p>
-    
+
     <div class="mt-4 mb-4">
         <h5 class="form-label-gamer">Descripción:</h5>
         <p>@Model.Descripcion</p>
+    </div>
+
+    <hr style="border-color: #5e35b1;" />
+
+    <div class="mt-4">
+        <h4 class="text-purple-light mb-3">Reseñas de la Comunidad</h4>
+
+        @if (ViewBag.Reviews != null)
+        {
+            var reviews = ViewBag.Reviews as IEnumerable<Review>;
+            if (!reviews.Any())
+            {
+                <p class="text-muted text-center">Aún no hay reseñas. ¡Sé el primero!</p>
+            }
+            else
+            {
+                foreach (var review in reviews)
+                {
+                    <div class="mb-3 p-3" style="background: rgba(94,53,177,0.2); border-radius: 8px;">
+                        <div class="d-flex justify-content-between">
+                            <strong>@review.Usuario</strong>
+                            <span class="text-warning">
+                                @string.Concat(Enumerable.Repeat("⭐", review.Calificacion))
+                            </span>
+                        </div>
+                        <p class="mb-0 text-muted">@review.Comentario</p>
+                    </div>
+                }
+            }
+        }
+
+        <div class="text-center mt-3">
+            <a asp-action="AgregarReview" asp-route-itemId="@Model.Id" class="btn-gamer btn-sm">
+                + Escribir Reseña
+            </a>
+        </div>
     </div>
 
     <div class="text-center mt-4">
@@ -18,4 +55,3 @@
         </a>
     </div>
 </div>
-/* se me oolvido hacer commit perdon :c */
